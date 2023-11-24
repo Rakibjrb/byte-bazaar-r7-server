@@ -4,6 +4,7 @@ const noRoutes = require("./controllers/noRoutes");
 const handleInternalServerErrors = require("./controllers/handleInternalServerErrors");
 const featuredRoutes = require("./routes/featured/featured");
 const trendingRoutes = require("./routes/trending/trending");
+const middlewares = require("./middlewares/middlewares");
 
 //server check
 app.get("/", (req, res) => {
@@ -12,6 +13,9 @@ app.get("/", (req, res) => {
     status: 200,
   });
 });
+
+//installed middlwares
+middlewares(app, express);
 
 //featured products routes
 app.use(featuredRoutes);
