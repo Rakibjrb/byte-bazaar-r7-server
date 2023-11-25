@@ -6,6 +6,7 @@ const middlewares = require("./middlewares/middlewares");
 const featuredRoutes = require("./routes/featured/featured");
 const trendingRoutes = require("./routes/trending/trending");
 const getAllProducts = require("./routes/allproduct/allproduct");
+const reviews = require("./routes/reviews/reviews");
 
 //server check
 app.get("/", (req, res) => {
@@ -26,6 +27,9 @@ app.use(featuredRoutes);
 
 //trending products routes
 app.use(trendingRoutes);
+
+//products reviews
+app.use(reviews);
 
 //internal server errors handle
 app.all("*", noRoutes);
