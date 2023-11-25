@@ -22,8 +22,6 @@ const getAllProducts = async (req, res) => {
     res.send(allproduct);
     return;
   }
-
-  const oneProduct = await AllProduct.find({ _id: id });
-  res.send(oneProduct);
+  res.send([]);
 };
 module.exports = getAllProducts;
