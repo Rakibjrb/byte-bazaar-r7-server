@@ -6,13 +6,19 @@ const getAllProducts = async (req, res) => {
 
   if (searched) {
     const query = { tags: searched };
-    const foundedProduct = await AllProduct.find(query);
+    const foundedProduct = await AllProduct.find(
+      query,
+      "_id img name time tags votes"
+    );
     res.send(foundedProduct);
     return;
   }
 
   if (id === "all") {
-    const allproduct = await AllProduct.find({});
+    const allproduct = await AllProduct.find(
+      {},
+      "_id img name time tags votes"
+    );
     res.send(allproduct);
     return;
   }
