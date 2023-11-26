@@ -1,10 +1,9 @@
-const AllProduct = require("../../../models/allproduct/allproduct");
+const Reviews = require("../../../models/reviews/reviews");
 
 const postReview = async (req, res, next) => {
-  const newdata = req.body;
-  const query = { productId: req.params.id };
+  const data = req.body;
   try {
-    const review = await AllProduct.findOne(query);
+    const review = await Reviews.create(data);
     res.send(review);
   } catch (error) {
     next(error);
