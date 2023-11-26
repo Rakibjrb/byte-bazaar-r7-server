@@ -1,11 +1,11 @@
-const Featured = require("../../../models/featured/featured");
+const AllProduct = require("../../../models/allproduct/allproduct");
 
 const featuredProducts = async (req, res, next) => {
   const sort = req.query.sort;
   const query = { category: "featured" };
   try {
     if (sort === "asc" || sort === "desc") {
-      const sorted = await Featured.find(
+      const sorted = await AllProduct.find(
         query,
         "_id img name time tags votes"
       ).sort({
@@ -15,7 +15,7 @@ const featuredProducts = async (req, res, next) => {
       res.send(sorted);
       return;
     }
-    const featured = await Featured.find(query);
+    const featured = await AllProduct.find(query);
     res.send(featured);
   } catch (error) {
     next(error);
