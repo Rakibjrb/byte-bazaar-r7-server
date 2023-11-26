@@ -7,6 +7,7 @@ const featuredRoutes = require("./routes/featured/featured");
 const trendingRoutes = require("./routes/trending/trending");
 const getAllProducts = require("./routes/allproduct/allproduct");
 const reviews = require("./routes/reviews/reviews");
+const users = require("./routes/users/users");
 
 //server check
 app.get("/", (req, res) => {
@@ -27,6 +28,9 @@ app.use(featuredRoutes);
 
 //trending products routes
 app.use(trendingRoutes);
+
+//user management routes
+app.use(users);
 
 //products reviews
 app.use(reviews);
