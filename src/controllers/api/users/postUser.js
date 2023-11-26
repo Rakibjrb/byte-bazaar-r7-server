@@ -5,7 +5,6 @@ const postNewUserToDB = async (req, res, next) => {
   try {
     const checkedUser = await Users.findOne({ email: userData.email });
     if (checkedUser) {
-      console.log("from checker : ", checkedUser);
       res.send({ success: true });
       return;
     }

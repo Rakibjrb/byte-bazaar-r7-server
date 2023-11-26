@@ -1,13 +1,19 @@
 const AllProduct = require("../../../models/allproduct/allproduct");
+const Votes = require("../../../models/allproduct/votes");
 
 const vote = async (req, res, next) => {
-  const id = req.body.id;
+  const voteData = req.body;
   try {
-    const increasedVote = await AllProduct.updateOne(
-      { _id: id },
-      { $set: { votes: req.body.votes } }
+    const updatedVote = await AllProduct.updateOne(
+      { _id: voteData.productId },
+      { $set: { votes: voteData.votes } }
     );
-    res.send(increasedVote);
+    if (updatedVote.modifiedCount > 0) {
+      const addedVotes = await Votes.create(voteData);
+      res.send(addedVotes);
+      return;
+    }
+    res.send({ success: false });
   } catch (error) {
     next(error);
   }
