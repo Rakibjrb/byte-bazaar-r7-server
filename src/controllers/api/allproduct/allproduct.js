@@ -1,27 +1,41 @@
 const AllProduct = require("../../../models/allproduct/allproduct");
 
-const getAllProducts = async (req, res) => {
+const getAllProducts = async (req, res, next) => {
   const id = req.params.id;
   const searched = req.query.search;
+  const reqemail = req.query.email;
 
-  if (searched) {
-    const query = { tags: searched };
-    const foundedProduct = await AllProduct.find(
-      query,
-      "_id img name time tags votes"
-    );
-    res.send(foundedProduct);
-    return;
-  }
+  try {
+    if (reqemail) {
+      const foundedProduct = await AllProduct.find(
+        { "owner.email": reqemail },
+        "_id img name time tags votes status"
+      );
+      res.send(foundedProduct);
+      return;
+    }
 
-  if (id === "all") {
-    const allproduct = await AllProduct.find(
-      { status: "Approved" },
-      "_id img name time tags votes"
-    );
-    res.send(allproduct);
-    return;
+    if (searched) {
+      const query = { tags: searched };
+      const foundedProduct = await AllProduct.find(
+        query,
+        "_id img name time tags votes status"
+      );
+      res.send(foundedProduct);
+      return;
+    }
+
+    if (id === "all") {
+      const allproduct = await AllProduct.find(
+        { status: "Approved" },
+        "_id img name time tags votes status"
+      );
+      res.send(allproduct);
+      return;
+    }
+    res.send([]);
+  } catch (error) {
+    next(error);
   }
-  res.send([]);
 };
 module.exports = getAllProducts;
