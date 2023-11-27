@@ -33,6 +33,10 @@ const allproductSchema = new Schema({
     type: Array,
     required: true,
   },
+  status: {
+    type: String,
+    required: true,
+  },
   owner: {
     name: {
       type: String,
@@ -43,10 +47,6 @@ const allproductSchema = new Schema({
       required: true,
     },
     email: {
-      type: String,
-      required: true,
-    },
-    profession: {
       type: String,
       required: true,
     },

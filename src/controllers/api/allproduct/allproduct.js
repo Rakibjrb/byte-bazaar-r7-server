@@ -16,7 +16,7 @@ const getAllProducts = async (req, res) => {
 
   if (id === "all") {
     const allproduct = await AllProduct.find(
-      {},
+      { status: "Approved" },
       "_id img name time tags votes"
     );
     res.send(allproduct);

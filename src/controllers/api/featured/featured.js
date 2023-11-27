@@ -2,7 +2,7 @@ const AllProduct = require("../../../models/allproduct/allproduct");
 
 const featuredProducts = async (req, res, next) => {
   const sort = req.query.sort;
-  const query = { category: "featured" };
+  const query = { category: "featured", status: "Approved" };
   try {
     if (sort === "asc" || sort === "desc") {
       const sorted = await AllProduct.find(
