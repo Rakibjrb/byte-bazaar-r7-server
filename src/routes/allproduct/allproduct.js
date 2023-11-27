@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const getAllProducts = require("../../controllers/api/allproduct/allproduct");
+const deleteproduct = require("../../controllers/api/allproduct/deleteproduct");
 const getAllReports = require("../../controllers/api/allproduct/getReports");
 const getallvotes = require("../../controllers/api/allproduct/getallvotes");
 const getVotes = require("../../controllers/api/allproduct/getvote");
@@ -16,5 +17,6 @@ router.get("/api/getallvotes/:email", getallvotes);
 router.post("/api/report", reportProduct);
 router.get("/api/getallreports/:email", getAllReports);
 router.post("/api/product", postnewproduct);
+router.delete("/api/product/:id", deleteproduct);
 
 module.exports = router;
