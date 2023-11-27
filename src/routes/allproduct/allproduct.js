@@ -7,6 +7,7 @@ const getVotes = require("../../controllers/api/allproduct/getvote");
 const postnewproduct = require("../../controllers/api/allproduct/postproduct");
 const reportProduct = require("../../controllers/api/allproduct/report");
 const singleProduct = require("../../controllers/api/allproduct/singleproduct");
+const updateproduct = require("../../controllers/api/allproduct/updateproduct");
 const vote = require("../../controllers/api/allproduct/vote");
 
 router.get("/api/product/:id", getAllProducts);
@@ -17,6 +18,7 @@ router.get("/api/getallvotes/:email", getallvotes);
 router.post("/api/report", reportProduct);
 router.get("/api/getallreports/:email", getAllReports);
 router.post("/api/product", postnewproduct);
+router.patch("/api/product", updateproduct);
 router.delete("/api/product/:id", deleteproduct);
 
 module.exports = router;
