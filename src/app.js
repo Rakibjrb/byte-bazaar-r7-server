@@ -8,6 +8,7 @@ const trendingRoutes = require("./routes/trending/trending");
 const getAllProducts = require("./routes/allproduct/allproduct");
 const reviews = require("./routes/reviews/reviews");
 const users = require("./routes/users/users");
+const private = require("./routes/private/private");
 
 //server check
 app.get("/", (req, res) => {
@@ -34,6 +35,9 @@ app.use(users);
 
 //products reviews
 app.use(reviews);
+
+//private data for admin and moderators
+app.use(private);
 
 //internal server errors handle
 app.all("*", noRoutes);

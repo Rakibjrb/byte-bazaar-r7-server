@@ -8,7 +8,6 @@ const reportSchema = new Schema({
     name: { type: String, required: true },
     image: { type: String, required: true },
     email: { type: String, required: true },
-    profession: { type: String, required: true },
   },
   reportedUser: {
     name: { type: String, required: true },

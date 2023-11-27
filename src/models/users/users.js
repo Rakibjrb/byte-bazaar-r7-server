@@ -6,6 +6,7 @@ const usersSchema = new Schema({
   email: { type: String, required: true },
   date: { type: String, required: true },
   subscription: { type: String, required: true },
+  role: { type: String, required: true },
 });
 
 const Users = model("Users", usersSchema, "users");
