@@ -11,18 +11,27 @@ const reportProduct = require("../../controllers/api/allproduct/report");
 const singleProduct = require("../../controllers/api/allproduct/singleproduct");
 const updateproduct = require("../../controllers/api/allproduct/updateproduct");
 const vote = require("../../controllers/api/allproduct/vote");
+const verifyToken = require("../../middlewares/verifyToken");
 
 router.get("/api/product/:id", getAllProducts);
-router.get("/api/single-product/:id", singleProduct);
-router.post("/api/vote", vote);
+router.get("/api/single-product/:id", verifyToken, singleProduct);
+router.post("/api/vote", verifyToken, vote);
 router.get("/api/vote", getVotes);
 router.get("/api/getallvotes/:email", getallvotes);
-router.post("/api/report", reportProduct);
-router.get("/api/getallreports/:email", getAllReports);
-router.post("/api/product", postnewproduct);
-router.patch("/api/product", updateproduct);
-router.delete("/api/product/:id", deleteproduct);
-router.get("/api/all-reported-product/:email", getallreportedProduct);
-router.delete("/api/delete-reported-product/:id", deleteReportedProduct);
+router.post("/api/report", verifyToken, reportProduct);
+router.get("/api/getallreports/:email", verifyToken, getAllReports);
+router.post("/api/product", verifyToken, postnewproduct);
+router.patch("/api/product", verifyToken, updateproduct);
+router.delete("/api/product/:id", verifyToken, deleteproduct);
+router.get(
+  "/api/all-reported-product/:email",
+  verifyToken,
+  getallreportedProduct
+);
+router.delete(
+  "/api/delete-reported-product/:id",
+  verifyToken,
+  deleteReportedProduct
+);
 
 module.exports = router;
