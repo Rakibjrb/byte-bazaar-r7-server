@@ -4,6 +4,10 @@ const Users = require("../../../models/users/users");
 const getallvotes = async (req, res, next) => {
   const email = req.params.email;
   try {
+    if (email === "undefined" || email === "null") {
+      res.send([]);
+      return;
+    }
     const checkAdmin = await Users.findOne({ email });
     if (checkAdmin.role === "Admin") {
       const allVotesForAdmin = await Votes.find({});
