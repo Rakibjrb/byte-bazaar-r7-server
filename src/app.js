@@ -9,6 +9,7 @@ const getAllProducts = require("./routes/allproduct/allproduct");
 const reviews = require("./routes/reviews/reviews");
 const users = require("./routes/users/users");
 const private = require("./routes/private/private");
+const cupons = require("./routes/cupons/cupon");
 
 //server check
 app.get("/", (req, res) => {
@@ -38,6 +39,9 @@ app.use(reviews);
 
 //private data for admin and moderators
 app.use(private);
+
+//admin cupon routes
+app.use(cupons);
 
 //internal server errors handle
 app.all("*", noRoutes);
