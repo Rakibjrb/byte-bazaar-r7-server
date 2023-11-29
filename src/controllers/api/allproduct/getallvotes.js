@@ -1,5 +1,4 @@
 const Votes = require("../../../models/allproduct/votes");
-const Users = require("../../../models/users/users");
 
 const getallvotes = async (req, res, next) => {
   const email = req.params.email;
@@ -8,18 +7,12 @@ const getallvotes = async (req, res, next) => {
       res.send([]);
       return;
     }
-    const checkAdmin = await Users.findOne({ email });
-    if (checkAdmin.role === "Admin") {
-      const allVotesForAdmin = await Votes.find({});
-      res.send(allVotesForAdmin);
-      return;
-    }
     if (email) {
       const allvotedproducts = await Votes.find({ useremail: email });
       res.send(allvotedproducts);
       return;
     }
-    res.send({ success: false });
+    res.send([]);
   } catch (error) {
     next(error);
   }
