@@ -5,7 +5,7 @@ const createToken = require("./jwt/token");
 const middlewares = (app, express) => {
   app.use(
     cors({
-      origin: process.env.ORIGIN,
+      origin: [process.env.PROD_ORIGIN, process.env.SECOND_PROD_ORIGIN],
       credentials: true,
     })
   );
