@@ -3,6 +3,7 @@ const AllProduct = require("../../../models/allproduct/allproduct");
 const getAllProducts = async (req, res, next) => {
   const id = req.params.id;
   const searched = req.query.search;
+  const searchedText = searched.toLowerCase();
   const reqemail = req.query.email;
 
   try {
@@ -16,7 +17,7 @@ const getAllProducts = async (req, res, next) => {
     }
 
     if (searched) {
-      const query = { tags: searched };
+      const query = { tags: searchedText };
       const foundedProduct = await AllProduct.find(
         query,
         "_id img name time tags votes status"
