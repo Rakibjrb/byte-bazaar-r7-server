@@ -7,7 +7,9 @@ const getPendingProducts = async (req, res, next) => {
     const getRole = await Users.findOne({ email: reqemail });
     if (getRole.role === "Moderator") {
       const pendingProducts = await AllProduct.find({ status: "Pending" });
-      res.send(pendingProducts);
+      const approvedProducts = await AllProduct.find({ status: "Approved" });
+      const allproductsforModerator = [...pendingProducts, ...approvedProducts];
+      res.send(allproductsforModerator);
     }
   } catch (error) {
     next(error);
