@@ -20,7 +20,7 @@ router.get("/api/product/:id", getAllProducts);
 router.get("/api/topvoted-forslider", topvotedforslider);
 router.get("/api/document-count", countApprevedProduct);
 router.get("/api/pagination", handlePagination);
-router.get("/api/single-product/:id", verifyToken, singleProduct);
+router.get("/api/single-product/:id", singleProduct);
 router.post("/api/vote", verifyToken, vote);
 router.get("/api/vote", getVotes);
 router.get("/api/getallvotes/:email", getallvotes);
